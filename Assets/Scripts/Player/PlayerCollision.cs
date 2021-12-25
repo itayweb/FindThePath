@@ -24,7 +24,6 @@ public class PlayerCollision : MonoBehaviour
         Debug.DrawRay(transform.position, Vector2.up * 1.5f, Color.red);
         Debug.DrawRay(transform.position, Vector2.right * 1.5f, Color.red);
         Debug.DrawRay(transform.position, Vector2.down * 1.5f, Color.red);
-        //CheckBorders();
         CheckButtons();
     }
 
