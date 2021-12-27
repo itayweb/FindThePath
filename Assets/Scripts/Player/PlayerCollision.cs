@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class PlayerCollision : MonoBehaviour
 {
+    // List of the player's navigation's arrows buttons
     [SerializeField] private List<Button> arrows = new List<Button>();
+    // Layer mask to include only border's game objects in the collider detection
     [SerializeField] private LayerMask bordersLayerMask;
 
     private PlayerManager playerManagerScript;
@@ -20,11 +22,20 @@ public class PlayerCollision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Drawing gizmos lines across all 4 directions to identify if collide with something
+        //DrawCollisionLines();
+        
+        // Checking whether player is hitting colliders and turning off/on
+        // the navigation buttons accordingly
+        CheckButtons();
+    }
+
+    private void DrawCollisionLines()
+    {
         Debug.DrawRay(transform.position, Vector2.left * 1.5f, Color.red);
         Debug.DrawRay(transform.position, Vector2.up * 1.5f, Color.red);
         Debug.DrawRay(transform.position, Vector2.right * 1.5f, Color.red);
         Debug.DrawRay(transform.position, Vector2.down * 1.5f, Color.red);
-        CheckButtons();
     }
 
     RaycastHit2D CheckDirection(int i)

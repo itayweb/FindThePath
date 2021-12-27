@@ -1,29 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    // List of text game objects of the counters of navigation's buttons
     [SerializeField] private List<GameObject> arrowsCountersTexts = new List<GameObject>();
+    // List of counters for each 4 buttons
     [SerializeField] internal List<int> arrowsCounters = new List<int>();
+    // List of names for each 4 directions
     [SerializeField] private List<string> arrowsDirections = new List<string>();
     // The amount of x or y values to add to the walk direction
     [SerializeField] private float walkOffset;
     
     private PlayerManager playerManagerScript;
     private bool isFacingLeft = true;
-    private bool isMoving; // If player started moving
-    private Vector2 currentPos, targetPos; // The current position of player and the target position
-    private float timeToMove = 0.2f; // The amount of time the player takes to move to target position
+    // If player started moving
+    private bool isMoving;
+    // The current position of player and the target position
+    private Vector2 currentPos, targetPos;
+    // The amount of time the player takes to move to target position
+    private float timeToMove = 0.2f;
 
     // Start is called before the first frame update
     void Start()
     {
         playerManagerScript = GetComponent<PlayerManager>();
+        // Initializing the text in each text counter
+        InitializeTextCounters();
+    }
+
+    private void InitializeTextCounters()
+    {
         for (int i = 0; i < arrowsCountersTexts.Count; i++)
         {
-            arrowsCountersTexts[i].GetComponent<Text>().text = arrowsCounters[i].ToString();
+            arrowsCountersTexts[i].GetComponent<TextMeshProUGUI>().text = arrowsCounters[i].ToString();
         }
     }
 
@@ -44,7 +57,7 @@ public class PlayerController : MonoBehaviour
                 if (arrowsDirections[i] == "Up")
                 {
                     arrowsCounters[i]--;
-                    arrowsCountersTexts[i].GetComponent<Text>().text = arrowsCounters[i].ToString();
+                    arrowsCountersTexts[i].GetComponent<TextMeshProUGUI>().text = arrowsCounters[i].ToString();
                 }
             }
         }
@@ -61,7 +74,7 @@ public class PlayerController : MonoBehaviour
                 if (arrowsDirections[i] == "Down")
                 {
                     arrowsCounters[i]--;
-                    arrowsCountersTexts[i].GetComponent<Text>().text = arrowsCounters[i].ToString();
+                    arrowsCountersTexts[i].GetComponent<TextMeshProUGUI>().text = arrowsCounters[i].ToString();
                 }
             }
         }
@@ -79,7 +92,7 @@ public class PlayerController : MonoBehaviour
                 if (arrowsDirections[i] == "Left")
                 {
                     arrowsCounters[i]--;
-                    arrowsCountersTexts[i].GetComponent<Text>().text = arrowsCounters[i].ToString();
+                    arrowsCountersTexts[i].GetComponent<TextMeshProUGUI>().text = arrowsCounters[i].ToString();
                 }
             }
         }
@@ -97,7 +110,7 @@ public class PlayerController : MonoBehaviour
                 if (arrowsDirections[i] == "Right")
                 {
                     arrowsCounters[i]--;
-                    arrowsCountersTexts[i].GetComponent<Text>().text = arrowsCounters[i].ToString();
+                    arrowsCountersTexts[i].GetComponent<TextMeshProUGUI>().text = arrowsCounters[i].ToString();
                 }
             }
         }
